@@ -11,6 +11,16 @@ namespace gary_garage
     {
       Console.WriteLine("Vrooom!");
     }
+
+    public virtual void Turn(string direction)
+    {
+      Console.WriteLine($"Makes a {direction}");
+    }
+
+    public virtual void Stop()
+    {
+      Console.WriteLine("Then gently rolls to a stop.");
+    }
   }
 
 }

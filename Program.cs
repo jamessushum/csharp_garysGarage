@@ -12,9 +12,20 @@ namespace gary_garage
             Ram fifteenHundred = new Ram();
 
             fx.Drive();
+            fx.Turn("sharp left turn to the express lane");
+            fx.Stop();
+            Console.WriteLine();
             oneSevenTwo.Drive();
+            oneSevenTwo.Turn("nose dive into the pacific ocean");
+            oneSevenTwo.Stop();
+            Console.WriteLine();
             modelS.Drive();
+            modelS.Turn("U turn into the wrong side of the road");
+            modelS.Stop();
+            Console.WriteLine();
             fifteenHundred.Drive();
+            fifteenHundred.Turn("detour to the dirt road");
+            fifteenHundred.Stop();
         }
     }
 
@@ -29,7 +40,7 @@ namespace gary_garage
 
         public override void Drive()
         {
-            Console.WriteLine("Pshhhhhh...");
+            Console.WriteLine("The highlighter yellow Zero zips by you. Pshhhhhh...");
         }
     }
 
@@ -44,7 +55,12 @@ namespace gary_garage
 
         public override void Drive()
         {
-            Console.WriteLine("Whoooshhh...");
+            Console.WriteLine("The slate grey Cessna flies by you. Whoooshhh...");
+        }
+
+        public override void Stop()
+        {
+            Console.WriteLine("Then gently rolls to a stop before taking a swim.");
         }
     }
 
@@ -59,7 +75,7 @@ namespace gary_garage
 
         public override void Drive()
         {
-            Console.WriteLine("Cricket...cricket...");
+            Console.WriteLine("The royal blue Tesla slips by you. Cricket...cricket...");
         }
     }
 
@@ -74,7 +90,12 @@ namespace gary_garage
 
         public override void Drive()
         {
-            Console.WriteLine("Cough...cough...global warming");
+            Console.WriteLine("The firetruck red Ram growls by you. Cough...cough...global warming");
+        }
+
+        public override void Turn(string direction)
+        {
+            Console.WriteLine($"Makes a {direction} before encountering a small pebble");
         }
     }
 
