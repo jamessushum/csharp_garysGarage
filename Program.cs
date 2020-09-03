@@ -50,10 +50,39 @@ namespace gary_garage
                 ev.ChargeBattery();
             }
 
-            // Lists battery level after invoking ChargeBattery() method
+            // Lists battery level for each electric vehicle after invoking ChargeBattery() method
             foreach (IElectricVehicle ev in electricVehicles)
             {
                 Console.WriteLine($"New Battery Level: {ev.CurrentChargePercentage}%");
+            }
+
+            Console.WriteLine();
+
+            // List of gas vehicles
+            List<IGasVehicle> gasVehicles = new List<IGasVehicle>()
+            {
+                oneSevenTwo,
+                fifteenHundred
+            };
+
+            Console.WriteLine("Gas Vehicles");
+
+            // Lists current fuel level for each gas vehicle
+            foreach (IGasVehicle gv in gasVehicles)
+            {
+                Console.WriteLine($"Current Fuel Level: {gv.CurrentTankPercentage}%");
+            }
+
+            // Invokes RefuelTank() method on each gas vehicle
+            foreach (IGasVehicle gv in gasVehicles)
+            {
+                gv.RefuelTank();
+            }
+
+            // Lists fuel level for each gas vehicle after invoking RefuelTank() method
+            foreach (IGasVehicle gv in gasVehicles)
+            {
+                Console.WriteLine($"New Fuel Level: {gv.CurrentTankPercentage}%");
             }
         }
     }
@@ -75,13 +104,15 @@ namespace gary_garage
         }
     }
 
-    public class Cessna : Vehicle
+    public class Cessna : Vehicle, IGasVehicle
     {
         public double FuelCapacity { get; set; }
 
+        public int CurrentTankPercentage { get; set; } = 0;
+
         public void RefuelTank()
         {
-            Console.WriteLine("Fuel low...I need gas!");
+            CurrentTankPercentage = 100;
         }
 
         public override void Drive()
@@ -112,13 +143,15 @@ namespace gary_garage
         }
     }
 
-    public class Ram : Vehicle
+    public class Ram : Vehicle, IGasVehicle
     {
         public double FuelCapacity { get; set; }
 
+        public int CurrentTankPercentage { get; set; } = 0;
+
         public void RefuelTank()
         {
-            Console.WriteLine("Low fuel...just dispose of me!");
+            CurrentTankPercentage = 100;
         }
 
         public override void Drive()
