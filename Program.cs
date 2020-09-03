@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace gary_garage
 {
@@ -26,16 +27,46 @@ namespace gary_garage
             fifteenHundred.Drive();
             fifteenHundred.Turn("detour to the dirt road");
             fifteenHundred.Stop();
+            Console.WriteLine();
+
+            // List of electric vehicles
+            List<IElectricVehicle> electricVehicles = new List<IElectricVehicle>()
+            {
+                fx,
+                modelS
+            };
+
+            Console.WriteLine("Electric Vehicles");
+
+            // Lists current battery level for each electric vehicle
+            foreach (IElectricVehicle ev in electricVehicles)
+            {
+                Console.WriteLine($"Battery Level: {ev.CurrentChargePercentage}%");
+            }
+
+            // Invokes ChargeBattery() method on each electric vehicle
+            foreach (IElectricVehicle ev in electricVehicles)
+            {
+                ev.ChargeBattery();
+            }
+
+            // Lists battery level after invoking ChargeBattery() method
+            foreach (IElectricVehicle ev in electricVehicles)
+            {
+                Console.WriteLine($"New Battery Level: {ev.CurrentChargePercentage}%");
+            }
         }
     }
 
-    public class Zero : Vehicle
+    public class Zero : Vehicle, IElectricVehicle
     {
         public double BatteryKwh { get; set; }
 
+        public int CurrentChargePercentage { get; set; } = 0;
+
         public void ChargeBattery()
         {
-            Console.WriteLine("Battery low...please charge me!");
+            CurrentChargePercentage = 100;
         }
 
         public override void Drive()
@@ -64,13 +95,15 @@ namespace gary_garage
         }
     }
 
-    public class Tesla : Vehicle
+    public class Tesla : Vehicle, IElectricVehicle
     {
         public double BatteryKwh { get; set; }
 
+        public int CurrentChargePercentage { get; set; } = 0;
+
         public void ChargeBattery()
         {
-            Console.WriteLine("Battery low...take me to a supercharger now!");
+            CurrentChargePercentage = 100;
         }
 
         public override void Drive()
